@@ -1,0 +1,16 @@
+# build twittrouter executable when user executes "make"
+#================Makefile=========================
+
+export STAGING_DIR=/home/spring/ruyiyun/toolchain-mipsel_r2_gcc-4.6-linaro_uClibc-0.9.33.2/
+CC=/home/spring/ruyiyun/toolchain-mipsel_r2_gcc-4.6-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-uclibc-gcc
+
+
+CFLAGS=-std=gnu99 -Wall
+iwcap: iwcap.o
+	$(CC) $(LDFLAGS) iwcap.o -o iwcap -lm -ldl
+iwcap.o: iwcap.c
+	$(CC) $(CFLAGS) -c iwcap.c
+
+# remove object files and executable when user executes "make clean"
+clean:
+	rm *.o iwcap
